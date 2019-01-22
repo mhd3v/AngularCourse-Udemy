@@ -1,5 +1,35 @@
-<!-- PROPERTY Binding -->
-<!-- attribute binding is indicated by enclosing the attribute in []. In this case, we to bind w/ a property/attribute that resolved to boolean -->
-<button class="btn btn-primary" [disabled]="!allowNewServer">Add Server</button>
-<app-server></app-server>
-<app-server></app-server>
+<label for="">Server name</label>
+
+<!-- send event object to onUpdateServerName() on each keydown through special var $event -->
+<!-- <input 
+    type="text"
+    class="form-control"
+    (input)="onUpdateServerName($event)"> -->
+
+<!-- following is two-way binding. it is done by combining both event and property binding hence [()] -->
+
+<input 
+    type="text"
+    class="form-control"
+    [(ngModel)]="serverName">
+
+
+<!-- <p>{{serverName}}</p> -->
+
+<!-- PROPERTY Binding  []-->
+<!-- EVENT Binding  ()-->
+<!-- property binding is indicated by enclosing the attribute in []. In this case, we to bind w/ a property/attribute that resolved to boolean -->
+<!-- event binding is indicated by enclosing the event in (). In this case, we to bind click with a function which changes a variable -->
+<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onCreateServer()">Add Server</button>
+
+<!-- <p>{{serverCreationStatus}}</p> -->
+<!-- <p [innerText]="allowNewServer"></p> -->
+
+<!-- ngIf is a built in directive. * indicates that it's a structural directive (i.e. it makes changes to the DOM)  -->
+<p *ngIf="serverCreated; else noServer">Server was created with servername: {{serverName}}</p>
+<ng-template #noServer>
+    <p>No server was created</p>
+</ng-template>
+
+<!-- servers is the property defined in the typescript file -->
+<app-server *ngFor="let server of servers"></app-server>

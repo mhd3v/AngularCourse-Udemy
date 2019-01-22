@@ -22,6 +22,11 @@ import { Component, OnInit } from '@angular/core';
 export class ServersComponent implements OnInit {
 
   allowNewServer = false;
+  serverCreated = false;
+  serverCreationStatus = 'No server was created';
+  serverName = 'two-way-binding';
+  
+  servers = ['TestServer', 'TestServer 2'];
 
   // constructor runs whenever the component is created
   constructor() { 
@@ -31,6 +36,16 @@ export class ServersComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  onCreateServer() {
+    this.serverCreated = true;
+    this.servers.push(this.serverName);
+    this.serverCreationStatus = 'Server was created with name:' + this.serverName;
+  }
+
+  onUpdateServerName(event: any){
+    this.serverName = event.target.value;
   }
 
 }
