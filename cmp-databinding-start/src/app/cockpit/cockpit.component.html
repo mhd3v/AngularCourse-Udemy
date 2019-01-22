@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-xs-12">
+    <p>Add new Servers or blueprints!</p>
+    <label>Server Name</label>
+
+    <!-- <input type="text" class="form-control" [(ngModel)]="newServerName"> -->
+
+    <!-- passing data using a local reference (only accessible in the template and NOT in the typescript): -->
+    <!-- local reference holds the whole html object on which it is applied, in this case it will contain the whole input field -->
+    <input type="text" class="form-control" #myCustomLocalReference>
+    <label>Server Content</label>
+
+    <!-- <input type="text" class="form-control" [(ngModel)]="newServerContent"> -->
+    <input type="text" class="form-control" #serverContentInput>
+    <br>
+    <button
+      class="btn btn-primary"
+      (click)="onAddServer(myCustomLocalReference)">Add Server</button>
+    <button
+      class="btn btn-primary"
+      (click)="onAddBlueprint(myCustomLocalReference)">Add Server Blueprint</button>
+  </div>
+</div>
